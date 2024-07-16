@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="VirtualListDemo.VirtualListView"
+             xmlns:model="clr-namespace:VirtualListDemo.Model"
+             xmlns:mpowerkit="clr-namespace:MPowerKit.VirtualizeListView;assembly=MPowerKit.VirtualizeListView"
+             Title="VirtualListView">
+    
+    <Grid RowDefinitions="*">
+        <mpowerkit:VirtualizeListView x:Name="listView"
+                                      Grid.Row="0"
+                                      Padding="15"
+                                      ItemsSource="{Binding DataModels}"
+                                      IsGrouped="False">
+            <mpowerkit:VirtualizeListView.ItemTemplate>
+                <DataTemplate x:DataType="model:DataModel">
+                    <mpowerkit:VirtualizeListViewCell>
+                        <Grid ColumnDefinitions="*"
+                              ColumnSpacing="15"
+                              RowDefinitions="*,*,*"
+                              RowSpacing="10">
+                            <StackLayout Grid.Column="0"
+                                         Grid.Row="0"
+                                         Orientation="Horizontal"
+                                         HorizontalOptions="FillAndExpand"
+                                         VerticalOptions="Center">
+                                <Label FontSize="22"
+                                       Text="{Binding Id}" />
+                                <Label FontAttributes="Bold"
+                                       FontSize="22"
+                                       Text="{Binding Title}" />
+                            </StackLayout>
+                            <Entry Grid.Row="1"
+                                   Grid.Column="0"
+                                   FontSize="18"
+                                   HorizontalOptions="FillAndExpand"
+                                   BackgroundColor="Red"
+                                   Text="{Binding Description}" />
+                            <BoxView Grid.Column="0"
+                                Grid.Row="2"
+                                HeightRequest="1" BackgroundColor="Black"/>
+                        </Grid>
+                    </mpowerkit:VirtualizeListViewCell>
+                </DataTemplate>
+            </mpowerkit:VirtualizeListView.ItemTemplate>
+        </mpowerkit:VirtualizeListView>
+    </Grid>
+</ContentPage>
